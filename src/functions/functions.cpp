@@ -37,6 +37,26 @@ bool login(string username, string password) {
     return false;
 }
 
-char getUserType(char type) {
-    return type;
+char getUserType(string username, char type) {
+    ifstream input("./bin/data/users.csv", ios::in);
+    if (!input.is_open()) {
+        cout << "No se encontró el archivo" << endl;
+    } else {
+        string line;
+        while (getline(input, line)) {
+            stringstream ss(line);
+            string user;
+            string token;
+            char userType;
+            getline(ss, user, ',');
+            getline(ss, token, ',');
+            if (username == user) {
+                ss >> userType;
+                type = userType;
+                return type;
+            }
+
+        }
+    }
+    return 0;
 }

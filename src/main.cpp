@@ -14,6 +14,8 @@ int main() {
     login(username, password);
     if (login(username, password)==true){
         cout<<"login correcto"<<endl;
+        type=getUserType(username, type);
+        cout<<type<<endl;
     }
     
 

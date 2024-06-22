@@ -8,7 +8,13 @@
     - Administrador.
 - Implementacion de funion login para inicio de sesion.
     - Compara usuario y contrasena con la fila de usuario y su contrasena en users.csv.
+- Comprobacion de tipo de usuario.
 
 #### Por Implementar
-- Uso de getUserType para detectar el tipo de usuario que inicio sesion.
+- Acciones de sistema.
+    - Guardar.
+    - Modificar.
+    - Eliminar.
 - Funciones unicas por tipo de usuario.
+- Registro de nuevos usuarios.
+- Datos de libros.
