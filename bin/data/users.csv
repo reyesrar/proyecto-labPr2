@@ -1,4 +1,4 @@
-username,password,type
-reyesR10,12345678,a
-gabi17,86712312,e
-sergio30,87654321,c
+username,password,type,withdraw_book
+reyesR10,12345678,a,none
+gabi17,86712312,e,none
+sergio30,87654321,c,none
