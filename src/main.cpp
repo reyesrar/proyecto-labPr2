@@ -43,12 +43,21 @@ int main() {
                     cin>>bookTitle;                    
                     withdrawBook(username, bookTitle);
                     break;
-            
+
+                case 3:
+                    returnBook(username);
+                    break;
+
+                case 4:
+                    cout<<"Hasta pronto!"<<endl;
+                    exit(0);
+                    break;
                 default:
+                    cout<<"Opcion invalida!"<<endl;
                     break;
                 }
             
-            }while(cOption != 3);
+            }while(cOption != 4);
         }
     }
 }

@@ -16,12 +16,22 @@
 - Retiro de libros.
     - Mismas instrucciones al momento de comprar un libro.
     - Tipo de usuario reemplazado a "s" para suspender al cliente al no devolver al libro.
+    - Cada usuario solo puede poseer un libro a la vez.
+    - Para retirar otro libro, debe devolver el libro retirado anteriormente.
+- Devolucion de libros.
+    - Sistema regresa automaticamente el libro retirado.
+    - No es necesario introducir nombre de el libro, sistema retorna libro almacenado en users.csv.
 
 #### Por Implementar
-- Acciones de sistema.
-    - Guardar.
-    - Modificar.
-    - Eliminar.
+- Acciones de Sistema para Empleados.
+    - Guardar Nuevos Libros.
+    - Modificar Libros.
+    - Eliminar Libros.
 - Funciones unicas por tipo de usuario.
-    - Cliente: Suspencion al no Devolver el Libro.
+    - Cliente: Aviso de suspencion al iniciar sesion con estado suspendido.
 - Registro de nuevos usuarios.
+
+#### Problemas Conocidos
+- Al un cliente devolver un libro sin este tener un libro almacenado.
+    - Archivo Temporal no se borra.
+    - Archivo Temporal al ser creado con mismo nombre y ser sobreescrito, no parece generar errores.
