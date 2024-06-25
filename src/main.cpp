@@ -36,6 +36,13 @@ int main() {
                     cin>>bookTitle;
                     buyBook(bookTitle);
                     break;
+
+                case 2:
+                    showBooks();
+                    cout<<"\nLibro a retirar (por favor, separe las palabras con (_): ";
+                    cin>>bookTitle;                    
+                    withdrawBook(username, bookTitle);
+                    break;
             
                 default:
                     break;
