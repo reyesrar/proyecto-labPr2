@@ -279,3 +279,8 @@ void returnBook(string username) {
     cout<<"\n"<<bookUpdate<<" devuelto exitosamente"<<endl;
 }
 
+void registerUser(string username, string password) {
+    ofstream output("./bin/data/users.csv", ios::app);
+    output << username << "," << password << "," << 'c' << "," << "none" << endl;
+    output.close();
+}
