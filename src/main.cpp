@@ -72,9 +72,13 @@ int main() {
                 break;
             
                 case 2:
-                    cout<<"\nUsuario: ";
+                    cout<<"\nUsuario (minimo 6 caracteres, no contener caracteres especiales excepto '_'): ";
                     cin>>username;
-                    cout<<"Contrasena (minimo 8 caracteres): ";
+                    if (username.length() < 6) {
+                        cout<<"El usuario es muy corto"<<endl;
+                        break;
+                    }
+                    cout<<"Contrasena (minimo 8 caracteres, no contener caracteres especiales excepto '_'): ";
                     cin>>password;
                     if (password.length() < 8) {
                         cout<<"La contrasena es muy corta"<<endl;
