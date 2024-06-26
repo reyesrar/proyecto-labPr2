@@ -96,7 +96,7 @@ void showBooks() {
             getline(ss, title, ',');
             getline(ss, author, ',');
             getline(ss, status, ',');
-            if (status == "not sold") {
+            if (status == "not_sold") {
                 cout<<title<<", "<<author<<endl;
             }
         }
@@ -262,7 +262,7 @@ void returnBook(string username) {
         getline(ss2, status2, ',');
 
         if (title2 == bookUpdate) {
-            status2 = "not sold";
+            status2 = "not_sold";
             output2 << title2 << "," << author2 << "," << status2 << endl;
             found2 = true;
         } else output2 << line2 << endl;
@@ -302,8 +302,46 @@ void addBook() {
     cin >> title;
     cout << "Ingresa el autor del libro (por favor, separe las palabras con (_): ";
     cin >> author;
-    ofstream output("./bin/data/books.csv", ios::app);
-    output << title << "," << author << "," << "not sold" << endl;
+    ifstream input("./bin/data/books.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    while (getline(input, line)) {
+        output << line << endl;
+    }
+    output << title << "," << author << "," << "not_sold" << endl;
+    input.close();
     output.close();
-    cout << "Libro agregado exitosamente" << endl;
+    remove("./bin/data/books.csv");
+    rename("./bin/data/temp.csv", "./bin/data/books.csv");
+}
+
+void deleteBook() {
+    ifstream input("./bin/data/books.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    bool found = false;
+    string title;
+    cout<<"\nIngresa el nombre del libro que deseas eliminar (por favor, separe las palabras con (_): ";
+    cin>>title;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string title2, author, status;
+        getline(ss, title2, ',');
+        getline(ss, author, ',');
+        getline(ss, status, ',');
+
+        if (title == title2) {
+            found = true;
+        } else output << line << endl;
+    }
+    input.close();
+    output.close();
+    if (!found) {
+        cout << "Libro no encontrado" << endl;
+        remove("./bin/data/temp.csv");
+    } else {
+        remove("./bin/data/books.csv");
+        rename("./bin/data/temp.csv", "./bin/data/books.csv");
+    }
+
 }

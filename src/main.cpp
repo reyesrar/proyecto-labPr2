@@ -89,8 +89,8 @@ int main() {
                             cin>>bookTitle;
                             break;
                         case 3:
-                            cout<<"\nLibro a eliminar (por favor, separe las palabras con (_): ";
-                            cin>>bookTitle;
+                            showBooks();
+                            deleteBook();
                             break;
                         case 4:
                             cout<<"Hasta pronto!"<<endl;
