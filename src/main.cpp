@@ -102,6 +102,84 @@ int main() {
                         }
                     }while(cOption != 4);
                 }
+
+                if (type == 'a') {
+                    do{
+                    aMenu();
+                    cout<<"Opcion: ";
+                    cin>>cOption;
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore();
+                        cOption = 10;
+                    }
+                    fflush(stdin);
+                    switch (cOption){
+                        case 1:
+                            showBooks();
+                            cout<<"\nLibro a comprar (por favor, separe las palabras con (_): ";
+                            cin>>bookTitle;
+                            buyBook(bookTitle);
+                            break;
+
+                        case 2:
+                            showBooks();
+                            cout<<"\nLibro a retirar (por favor, separe las palabras con (_): ";
+                            cin>>bookTitle;                    
+                            withdrawBook(username, bookTitle);
+                            break;
+
+                        case 3:
+                            returnBook(username);
+                            break;
+                        
+                        case 4:
+                            addBook();
+                            break;
+
+                        case 5:
+                            showBooks();
+                            editBook();
+                            break;
+
+                        case 6:
+                            showBooks();
+                            deleteBook();
+                            break;
+
+                        case 7:
+                            cout<<"\nUsuario (minimo 6 caracteres, no contener caracteres especiales excepto '_'): ";
+                            cin>>username;
+                            if (username.length() < 6) {
+                            cout<<"El usuario es muy corto"<<endl;
+                                break;
+                            }
+                            cout<<"Contrasena (minimo 8 caracteres, no contener caracteres especiales excepto '_'): ";
+                            cin>>password;
+                            if (password.length() < 8) {
+                            cout<<"La contrasena es muy corta"<<endl;
+                                break;
+                            }
+                            registerUser(username, password);
+                            cout<<"\nUsuario registrado!"<<endl;
+                            break;
+
+                        case 8: //agregar empleado
+                            break;
+                            
+                        case 9: //eliminar usuario
+                            break;
+                            
+                        case 10:
+                            cout<<"Hasta pronto!"<<endl;
+                            exit(0);
+                            break;
+                            
+                        default:
+                            cout<<"Opcion invalida!"<<endl;
+                            break;
+                        }
+                } while(cOption != 10);
                 
                 break;
             
@@ -120,6 +198,15 @@ int main() {
                     }
                     registerUser(username, password);
                     cout<<"\nUsuario registrado!"<<endl;
+                    break;
+                    
+                case 3:
+                    cout<<"Hasta pronto!"<<endl;
+                    exit(0);
+                    break;
+                    
+                default:
+                    cout<<"Opcion invalida!"<<endl;
                     break;
             }
     } while (option != 3);

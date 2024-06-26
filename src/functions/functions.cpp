@@ -409,4 +409,18 @@ void editBook() {
 }
 
 void aMenu() {
+    cout << endl;
+    cout << "/**********************************/" << endl;
+    cout << "1. Comprar Libro                    " << endl;
+    cout << "2. Retirar Libro                    " << endl;
+    cout << "3. Devolver Libro                   " << endl;
+    cout << "4. Agregar Libro                    " << endl;
+    cout << "5. Eliminar Libro                   " << endl;
+    cout << "6. Modificar Libro                  " << endl;
+    cout << "7. Agregar Usuario (cliente)        " << endl;
+    cout << "8. Agregar Usuario (empleado)       " << endl;
+    cout << "9. Eliminar Usuario                 " << endl;
+    cout << "0. Salir                            " << endl;
+    cout << "/**********************************/" << endl;
+    cout << endl;
 }
