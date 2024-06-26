@@ -164,14 +164,23 @@ int main() {
                             cout<<"\nUsuario registrado!"<<endl;
                             break;
 
-                        case 8: //agregar empleado
+                        case 8:
                             cout<<"Tipo de usuario a registar (e: Empleado, a: Administrador): ";
                             cin>>eType;
                             if (eType == 'e' || 'a') registerEmpoyeeAdmin(eType);
                             else cout<<"Opcion invalida!"<<endl;
                             break;
                             
-                        case 9: //eliminar
+                        case 9:
+                            cout << "Tipo de usuarios a mostrar (e: empleado, c: cliente, s: suspendido): ";
+                            cin >> eType;
+                            if (eType == 'e' || 'c' || 's'){
+                                 showUsers(eType); 
+                                 deleteUser();
+                            }else cout << "Opcion invalida!" << endl;
+                            break;
+                            
+                            deleteUser();
                             break;
                             
                         case 0:

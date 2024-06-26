@@ -445,3 +445,51 @@ void registerEmpoyeeAdmin(char type) {
     rename("./bin/data/temp.csv", "./bin/data/users.csv");
     cout << "Usuario registrado exitosamente" << endl;
 }
+
+void showUsers(char type) {
+    cout << "\nLista de usuarios: " << endl;
+    ifstream input("./bin/data/users.csv");
+    string line;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string username, password, type2, withdrawedBook;
+        getline(ss, username, ',');
+        getline(ss, password, ',');
+        getline(ss, type2, ',');
+        getline(ss, withdrawedBook, ',');
+        if (type == type2[0]) {
+            cout << username << endl;
+        }
+    }
+    input.close();
+}
+
+void deleteUser() {
+    string username;
+    cout << "\nIngrese el nombre de usuario del usuario a eliminar: ";
+    cin >> username;
+    ifstream input("./bin/data/users.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    bool found = false;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string user, pass, type, withdrawedBook;
+        getline(ss, user, ',');
+        getline(ss, pass, ',');
+        getline(ss, type, ',');
+        getline(ss, withdrawedBook, ',');
+        if (user == username) {
+            found = true;
+        } else output << line << endl;
+    }
+    input.close();
+    output.close();
+    if (!found) {
+        cout << "Usuario no encontrado" << endl;
+        remove("./bin/data/temp.csv");  
+    } else {        
+        remove("./bin/data/users.csv");
+        rename("./bin/data/temp.csv", "./bin/data/users.csv");
+    }
+}

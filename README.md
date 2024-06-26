@@ -43,11 +43,11 @@
 - Funciones de Cliente.
 - Funciones Unicas.
     - Creacion de usuarios tipo empleado y tipo administrador.
+    - Eliminacion de usuarios tipo empleado, cliente y suspendido.
 
 #### Por Implementar
 - Funciones unicas por tipo de usuario.
     - Cliente: Aviso de suspencion al iniciar sesion con estado suspendido.
-- Funciones de Administrador.
 
 #### Problemas Conocidos
 - Al un cliente devolver un libro sin este tener un libro almacenado.
