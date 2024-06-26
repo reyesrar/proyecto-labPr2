@@ -194,6 +194,11 @@ int main() {
                         }
                     } while (cOption != 0);
                 }
+
+                if (type == 's') {
+                    sMenu();
+                    break;
+                }
                 
                 break;
             

@@ -493,3 +493,11 @@ void deleteUser() {
         rename("./bin/data/temp.csv", "./bin/data/users.csv");
     }
 }
+
+void sMenu() {
+    cout << endl;
+    cout << "/**********************************/" << endl;
+    cout << " Su cuenta se encuentra suspendida  " << endl;
+    cout << "/**********************************/" << endl;
+    cout << endl;
+}

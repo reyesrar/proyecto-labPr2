@@ -28,6 +28,8 @@
 - Devolucion de libros.
     - Sistema regresa automaticamente el libro retirado.
     - No es necesario introducir nombre de el libro, sistema retorna libro almacenado en users.csv.
+- Suspension de cliente.
+    - Al no devolver un libro antes de cerrar sesion, el cliente es suspendido;
 
 #### Funciones de Usuario: Empleado
 - Agregar Libros.
@@ -44,10 +46,6 @@
 - Funciones Unicas.
     - Creacion de usuarios tipo empleado y tipo administrador.
     - Eliminacion de usuarios tipo empleado, cliente y suspendido.
-
-#### Por Implementar
-- Funciones unicas por tipo de usuario.
-    - Cliente: Aviso de suspencion al iniciar sesion con estado suspendido.
 
 #### Problemas Conocidos
 - Al un cliente devolver un libro sin este tener un libro almacenado.
