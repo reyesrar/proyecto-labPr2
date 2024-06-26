@@ -16,3 +16,4 @@ void eMenu();
 void addBook();
 void deleteBook();
 void editBook();
+void aMenu();

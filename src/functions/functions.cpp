@@ -280,9 +280,33 @@ void returnBook(string username) {
 }
 
 void registerUser(string username, string password) {
-    ofstream output("./bin/data/users.csv", ios::app);
+    ifstream input("./bin/data/users.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    bool found = false;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string user, pass, type, withdrawedBook;
+        getline(ss, user, ',');
+        getline(ss, pass, ',');
+        getline(ss, type, ',');
+        getline(ss, withdrawedBook, ',');
+        if (user == username) {
+            cout << "El usuario ya existe" << endl;
+            remove("./bin/data/temp.csv");
+            return;
+        }
+        output << line << endl;
+    }
+
     output << username << "," << password << "," << 'c' << "," << "none" << endl;
+    input.close();
     output.close();
+    remove("./bin/data/users.csv");
+    rename("./bin/data/temp.csv", "./bin/data/users.csv");
+
+    cout << "Usuario creado exitosamente" << endl;
+    
 }
 
 void eMenu() {
@@ -382,4 +406,7 @@ void editBook() {
         rename("./bin/data/temp.csv", "./bin/data/books.csv");
     }
     cout<<"\nLibro modificado exitosamente"<<endl;
+}
+
+void aMenu() {
 }
