@@ -284,3 +284,26 @@ void registerUser(string username, string password) {
     output << username << "," << password << "," << 'c' << "," << "none" << endl;
     output.close();
 }
+
+void eMenu() {
+    cout << endl;
+    cout << "/**********************************/" << endl;
+    cout << "1. Agregar Libro                    " << endl;
+    cout << "2. Modificar Libro                  " << endl;
+    cout << "3. Eliminar Libro                   " << endl;
+    cout << "4. Salir                            " << endl;
+    cout << "/**********************************/" << endl;
+    cout << endl;
+}
+
+void addBook() {
+    string title, author;
+    cout << "Ingresa el nombre del libro (por favor, separe las palabras con (_): ";
+    cin >> title;
+    cout << "Ingresa el autor del libro (por favor, separe las palabras con (_): ";
+    cin >> author;
+    ofstream output("./bin/data/books.csv", ios::app);
+    output << title << "," << author << "," << "not sold" << endl;
+    output.close();
+    cout << "Libro agregado exitosamente" << endl;
+}

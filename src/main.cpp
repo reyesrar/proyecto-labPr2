@@ -68,6 +68,40 @@ int main() {
             
                     }while(cOption != 4);
                 }
+
+                if (type == 'e') {
+                    do{
+                    eMenu();
+                    cout<<"Opcion: ";
+                    cin>>cOption;
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore();
+                        cOption = 0;
+                    }
+                    fflush(stdin);
+                    switch (cOption){
+                        case 1:
+                            addBook();
+                            break;
+                        case 2:
+                            cout<<"\nLibro a modificar (por favor, separe las palabras con (_): ";
+                            cin>>bookTitle;
+                            break;
+                        case 3:
+                            cout<<"\nLibro a eliminar (por favor, separe las palabras con (_): ";
+                            cin>>bookTitle;
+                            break;
+                        case 4:
+                            cout<<"Hasta pronto!"<<endl;
+                            exit(0);
+                            break;
+                        default:
+                            cout<<"Opcion invalida!"<<endl;
+                            break;
+                        }
+                    }while(cOption != 4);
+                }
                 
                 break;
             

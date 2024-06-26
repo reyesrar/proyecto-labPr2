@@ -29,9 +29,12 @@
     - Sistema regresa automaticamente el libro retirado.
     - No es necesario introducir nombre de el libro, sistema retorna libro almacenado en users.csv.
 
+#### Funciones de Usuario: Empleado
+- Agregar Libros.
+    - Titulo y Autor deben ser introducidos sin caracteres especiales y separados por "_".
+
 #### Por Implementar
 - Acciones de Sistema para Empleados.
-    - Guardar Nuevos Libros.
     - Modificar Libros.
     - Eliminar Libros.
 - Funciones unicas por tipo de usuario.

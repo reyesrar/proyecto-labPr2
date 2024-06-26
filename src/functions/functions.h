@@ -12,3 +12,7 @@ void buyBook(string bookTitle);
 void withdrawBook(string username, string bookTitle);
 void returnBook(string username);
 void registerUser(string username, string password);
+void eMenu();
+void addBook();
+void deleteBook();
+void editBook();
