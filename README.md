@@ -32,13 +32,16 @@
 #### Funciones de Usuario: Empleado
 - Agregar Libros.
     - Titulo y Autor deben ser introducidos sin caracteres especiales y separados por "_".
+- Eliminar Libros.
+    - Al ingresar el nombre de el libro, este es eliminado del sistema.
+- Modificar Libros.
+    - Modificacion de titulo, autor y estado de el libro.
+    - Espacios deben ser reemplazados con "_".
 
 #### Por Implementar
-- Acciones de Sistema para Empleados.
-    - Modificar Libros.
-    - Eliminar Libros.
 - Funciones unicas por tipo de usuario.
     - Cliente: Aviso de suspencion al iniciar sesion con estado suspendido.
+- Funciones de Administrador.
 
 #### Problemas Conocidos
 - Al un cliente devolver un libro sin este tener un libro almacenado.

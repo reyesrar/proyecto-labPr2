@@ -85,8 +85,8 @@ int main() {
                             addBook();
                             break;
                         case 2:
-                            cout<<"\nLibro a modificar (por favor, separe las palabras con (_): ";
-                            cin>>bookTitle;
+                            showBooks();
+                            editBook();
                             break;
                         case 3:
                             showBooks();

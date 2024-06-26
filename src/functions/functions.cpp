@@ -343,5 +343,43 @@ void deleteBook() {
         remove("./bin/data/books.csv");
         rename("./bin/data/temp.csv", "./bin/data/books.csv");
     }
+    cout<<"\nLibro eliminado exitosamente"<<endl;
+}
 
+void editBook() {
+    ifstream input("./bin/data/books.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    bool found = false;
+    string title;
+    cout<<"\nIngresa el nombre del libro que deseas modificar (por favor, separe las palabras con (_): ";
+    cin>>title;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string title2, author, status, author2, status2;
+        getline(ss, title2, ',');
+        getline(ss, author2, ',');
+        getline(ss, status2, ',');
+
+        if (title == title2) {
+            found = true;
+            cout << "Ingresa el nuevo nombre del libro (por favor, separe las palabras con (_): ";
+            cin >> title;
+            cout << "Ingresa el nuevo autor del libro (por favor, separe las palabras con (_): ";
+            cin >> author;
+            cout << "Ingresa el nuevo estado del libro (por favor, separe las palabras con (_): ";
+            cin >> status;
+            output << title << "," << author << "," << status << endl;
+        } else output << line << endl;
+    }
+    input.close();
+    output.close();
+    if (!found) {
+        cout << "Libro no encontrado" << endl;
+        remove("./bin/data/temp.csv");
+    } else {
+        remove("./bin/data/books.csv");
+        rename("./bin/data/temp.csv", "./bin/data/books.csv");
+    }
+    cout<<"\nLibro modificado exitosamente"<<endl;
 }
