@@ -17,3 +17,4 @@ void addBook();
 void deleteBook();
 void editBook();
 void aMenu();
+void registerEmpoyeeAdmin(char type);

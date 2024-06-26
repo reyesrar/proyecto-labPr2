@@ -6,7 +6,7 @@
 using namespace std;
 
 string username, password, bookTitle;
-char type;
+char type, eType;
 int option, cOption;
 
 int main() {
@@ -111,7 +111,7 @@ int main() {
                     if (cin.fail()) {
                         cin.clear();
                         cin.ignore();
-                        cOption = 10;
+                        cOption = 0;
                     }
                     fflush(stdin);
                     switch (cOption){
@@ -165,12 +165,16 @@ int main() {
                             break;
 
                         case 8: //agregar empleado
+                            cout<<"Tipo de usuario a registar (e: Empleado, a: Administrador): ";
+                            cin>>eType;
+                            if (eType == 'e' || 'a') registerEmpoyeeAdmin(eType);
+                            else cout<<"Opcion invalida!"<<endl;
                             break;
                             
-                        case 9: //eliminar usuario
+                        case 9: //eliminar
                             break;
                             
-                        case 10:
+                        case 0:
                             cout<<"Hasta pronto!"<<endl;
                             exit(0);
                             break;
@@ -179,7 +183,8 @@ int main() {
                             cout<<"Opcion invalida!"<<endl;
                             break;
                         }
-                } while(cOption != 10);
+                    } while (cOption != 0);
+                }
                 
                 break;
             

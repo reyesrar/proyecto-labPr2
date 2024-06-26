@@ -418,9 +418,30 @@ void aMenu() {
     cout << "5. Eliminar Libro                   " << endl;
     cout << "6. Modificar Libro                  " << endl;
     cout << "7. Agregar Usuario (cliente)        " << endl;
-    cout << "8. Agregar Usuario (empleado)       " << endl;
+    cout << "8. Agregar Usuario (empleado/admin) " << endl;
     cout << "9. Eliminar Usuario                 " << endl;
     cout << "0. Salir                            " << endl;
     cout << "/**********************************/" << endl;
     cout << endl;
+}
+
+void registerEmpoyeeAdmin(char type) {
+    string username, password;
+    cout << "Ingresa el nombre de usuario (por favor, separe las palabras con (_): ";
+    cin >> username;
+    cout << "Ingresa la contrasena de usuario (por favor, separe las palabras con (_): ";
+    cin >> password;
+    
+    ifstream input("./bin/data/users.csv");
+    ofstream output("./bin/data/temp.csv");
+    string line;
+    while (getline(input, line)) {
+        output << line << endl;
+    }
+    output << username << "," << password << "," << type << "," << "none" << endl;
+    input.close();
+    output.close();
+    remove("./bin/data/users.csv");
+    rename("./bin/data/temp.csv", "./bin/data/users.csv");
+    cout << "Usuario registrado exitosamente" << endl;
 }

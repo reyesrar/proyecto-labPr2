@@ -38,6 +38,12 @@
     - Modificacion de titulo, autor y estado de el libro.
     - Espacios deben ser reemplazados con "_".
 
+#### Funciones de Administrador
+- Funciones de Empleado.
+- Funciones de Cliente.
+- Funciones Unicas.
+    - Creacion de usuarios tipo empleado y tipo administrador.
+
 #### Por Implementar
 - Funciones unicas por tipo de usuario.
     - Cliente: Aviso de suspencion al iniciar sesion con estado suspendido.
