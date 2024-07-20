@@ -2,14 +2,14 @@
 #include<fstream>
 #include<string>
 #include<sstream>
-#include"functions/functions.cpp"
+#include"app/view/view.cpp"
 using namespace std;
 
 string username, password, bookTitle;
 char type, eType;
 int option, cOption;
 
-int main() {
+int main() { //Transportar a vista
     do{
         menu();
         cout << "Opcion: ";
