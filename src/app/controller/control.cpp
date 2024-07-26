@@ -177,7 +177,7 @@ void withdrawBook(string username, string bookTitle) {
 void returnBook(string username) {
     string bookUpdate;
 
-    ifstream input("src/app/model/books.csv");
+    ifstream input("src/app/model/users.csv");
     ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
@@ -208,8 +208,8 @@ void returnBook(string username) {
 
     if (!found) remove("src/app/model/temp.csv");
     else {
-        remove("src/app/model/books.csv");
-        rename("src/app/model/temp.csv", "src/app/model/books.csv");
+        remove("src/app/model/users.csv");
+        rename("src/app/model/temp.csv", "src/app/model/users.csv");
     }
 
     ifstream input2("src/app/model/books.csv");
@@ -241,7 +241,7 @@ void returnBook(string username) {
 }
 
 void registerUser(string username, string password) {
-    ifstream input("src/app/model/books.csv");
+    ifstream input("src/app/model/users.csv");
     ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
@@ -262,8 +262,8 @@ void registerUser(string username, string password) {
     output << username << "," << password << "," << 'c' << "," << "none" << endl;
     input.close();
     output.close();
-    remove("src/app/model/books.csv");
-    rename("src/app/model/temp.csv", "src/app/model/books.csv");
+    remove("src/app/model/users.csv");
+    rename("src/app/model/temp.csv", "src/app/model/users.csv");
     
 }
 
@@ -343,7 +343,7 @@ void editBook() {
 void registerEmpoyeeAdmin(char type) {
     string username, password;
     
-    ifstream input("src/app/model/books.csv");
+    ifstream input("src/app/model/users.csv");
     ofstream output("src/app/model/temp.csv");
     string line;
     while (getline(input, line)) {
@@ -352,8 +352,8 @@ void registerEmpoyeeAdmin(char type) {
     output << username << "," << password << "," << type << "," << "none" << endl;
     input.close();
     output.close();
-    remove("src/app/model/books.csv");
-    rename("src/app/model/temp.csv", "src/app/model/books.csv");
+    remove("src/app/model/users.csv");
+    rename("src/app/model/temp.csv", "src/app/model/users.csv");
 }
 
 void showUsers(char type) {
@@ -366,13 +366,15 @@ void showUsers(char type) {
         getline(ss, password, ',');
         getline(ss, type2, ',');
         getline(ss, withdrawedBook, ',');
+
+        if (type == type2[0]) cout << username << endl;
+        
     }
     input.close();
 }
 
-void deleteUser() {
-    string username;
-    ifstream input("src/app/model/books.csv");
+void deleteUser(string username) {
+    ifstream input("src/app/model/users.csv");
     ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
@@ -391,7 +393,7 @@ void deleteUser() {
     output.close();
     if (!found) remove("src/app/model/temp.csv");  
     else {        
-        remove("src/app/model/books.csv");
-        rename("src/app/model/temp.csv", "src/app/model/books.csv");
+        remove("src/app/model/users.csv");
+        rename("src/app/model/temp.csv", "src/app/model/users.csv");
     }
 }

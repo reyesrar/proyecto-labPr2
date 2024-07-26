@@ -243,14 +243,16 @@ void run(){
                             cout << "Tipo de usuarios a mostrar (e: empleado, c: cliente, s: suspendido): ";
                             cin >> eType;
                             if (eType == 'e' || 'c' || 's'){
-                                 showUsers(eType); 
-                                 deleteUser();
+                                cout << endl;
+                                 showUsers(eType);
+                                cout << "\nUsuario a borrar: ";
+                                cin >> username; 
+                                 deleteUser(username);
                             }else cout << "Opcion invalida!" << endl;
                             break;
-                            
-                            deleteUser();
+
+                        case 10:
                             break;
-                            
                         case 0:
                             cout<<"Hasta pronto!"<<endl;
                             exit(0);
