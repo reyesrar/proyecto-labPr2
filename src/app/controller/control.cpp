@@ -2,6 +2,7 @@
 #include<fstream>
 #include<string>
 #include<sstream>
+#include"control.h"
 using namespace std;
 
 char getUserType(string username, char type) {
@@ -340,7 +341,7 @@ void editBook() {
     }
 }
 
-void registerEmpoyeeAdmin(char type) {
+void registerEmployeeAdmin(char type) {
     string username, password;
     
     ifstream input("src/app/model/users.csv");

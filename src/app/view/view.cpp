@@ -236,7 +236,7 @@ void run(){
                         case 8:
                             cout<<"\nTipo de usuario a registar (e: Empleado, a: Administrador): ";
                             cin>>eType;
-                            if (eType == 'e' || 'a') registerEmpoyeeAdmin(eType);
+                            if (eType == 'e' || 'a') registerEmployeeAdmin(eType);
                             else cout<<"Opcion invalida!"<<endl;
                             break;
                             
