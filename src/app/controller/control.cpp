@@ -397,3 +397,29 @@ void deleteUser(string username) {
         rename("src/app/model/temp.csv", "src/app/model/users.csv");
     }
 }
+
+void suspendUser(string username) {
+    ifstream input("src/app/model/users.csv");
+    ofstream output("src/app/model/temp.csv");
+    string line;
+    bool found = false;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string user, pass, type, withdrawedBook;
+        getline(ss, user, ',');
+        getline(ss, pass, ',');
+        getline(ss, type, ',');
+        getline(ss, withdrawedBook, ',');
+        if (user == username) {
+            found = true;
+            output << user << "," << pass << "," << 's' << "," << withdrawedBook << endl;
+        } else output << line << endl;
+    }
+    input.close();
+    output.close();
+    if (!found) remove("src/app/model/temp.csv");  
+    else {        
+        remove("src/app/model/users.csv");
+        rename("src/app/model/temp.csv", "src/app/model/users.csv");
+    }
+}

@@ -62,6 +62,7 @@ void aMenu() {
     cout << "7. Agregar Usuario (cliente)        " << endl;
     cout << "8. Agregar Usuario (empleado/admin) " << endl;
     cout << "9. Eliminar Usuario                 " << endl;
+    cout << "10. Suspender Usuario               " << endl;
     cout << "0. Salir                            " << endl;
     cout << "/**********************************/" << endl;
     cout << endl;
@@ -233,14 +234,14 @@ void run(){
                             break;
 
                         case 8:
-                            cout<<"Tipo de usuario a registar (e: Empleado, a: Administrador): ";
+                            cout<<"\nTipo de usuario a registar (e: Empleado, a: Administrador): ";
                             cin>>eType;
                             if (eType == 'e' || 'a') registerEmpoyeeAdmin(eType);
                             else cout<<"Opcion invalida!"<<endl;
                             break;
                             
                         case 9:
-                            cout << "Tipo de usuarios a mostrar (e: empleado, c: cliente, s: suspendido): ";
+                            cout << "\nTipo de usuarios a mostrar (e: empleado, c: cliente, s: suspendido): ";
                             cin >> eType;
                             if (eType == 'e' || 'c' || 's'){
                                 cout << endl;
@@ -252,6 +253,11 @@ void run(){
                             break;
 
                         case 10:
+                            cout<<"\nLista de Clientes: "<<endl;
+                            showUsers('c');
+                            cout<<"\nUsuario a suspender: ";
+                            cin>>username;
+                            suspendUser(username);
                             break;
                         case 0:
                             cout<<"Hasta pronto!"<<endl;
