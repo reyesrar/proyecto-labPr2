@@ -1,32 +1,11 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<sstream>
 using namespace std;
 
-//Guia para funciones en modulo
-
-bool login(string username, string password) {
-    ifstream input("users.csv", ios::in);
-    if (!input.is_open()) return false;
-    else {
-        string line;
-        string user, pass;
-        while (getline(input, line)) {
-            stringstream ss(line);
-            getline(ss, user, ',');
-            getline(ss, pass, ',');
-            if (username == user && password == pass) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 char getUserType(string username, char type) {
-    ifstream input("users.csv", ios::in);
+    ifstream input("src/app/model/users.csv", ios::in);
     if (!input.is_open()) return 0;
     else {
         string line;
@@ -47,8 +26,27 @@ char getUserType(string username, char type) {
     return 0;
 }
 
-void showBooks() { //Implementar algoritmo para imprimir libros
-    ifstream input("books.csv", ios::in);
+bool login(string username, string password) {
+    ifstream input("src/app/model/users.csv", ios::in);
+    if (!input.is_open()) return false;
+    else {
+        string line;
+        string user, pass;
+        while (getline(input, line)) {
+            stringstream ss(line);
+            getline(ss, user, ',');
+            getline(ss, pass, ',');
+            if (username == user && password == pass) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+void showBooks() {
+    ifstream input("src/app/model/books.csv", ios::in);
     string line;
     while (getline(input, line)) {
         stringstream ss(line);
@@ -58,12 +56,30 @@ void showBooks() { //Implementar algoritmo para imprimir libros
         getline(ss, title, ',');
         getline(ss, author, ',');
         getline(ss, status, ',');
+
+        if (status == "not_sold") cout << title << ", " << author << " " << endl;
+    }
+}
+
+void showAllBooks() {
+    ifstream input("src/app/model/books.csv", ios::in);
+    string line;
+    while (getline(input, line)) {
+        stringstream ss(line);
+        string title;
+        string author;
+        string status;
+        getline(ss, title, ',');
+        getline(ss, author, ',');
+        getline(ss, status, ',');
+
+        cout << title << ", " << author << " " << status << endl;
     }
 }
 
 void buyBook(string bookTitle) {
-    ifstream input("books.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
 
@@ -86,16 +102,16 @@ void buyBook(string bookTitle) {
     input.close();
     output.close();
 
-    if (!found) remove("temp.csv");
+    if (!found) remove("src/app/model/temp.csv");
     else {
-        remove("books.csv");
-        rename("temp.csv", "books.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 }
 
 void withdrawBook(string username, string bookTitle) {
-    ifstream input("users.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/users.csv");
+    ofstream output("src/app/model/temp.csv"); 
     string line;
     bool found = false;
     while (getline(input, line)) {
@@ -107,13 +123,12 @@ void withdrawBook(string username, string bookTitle) {
         getline(ss, withdrawedBook, ',');
 
         if (user == username && withdrawedBook != "none") {
-            remove("temp.csv");
+            remove("src/app/model/temp.csv");
             return;
         }
         
         if (user == username && withdrawedBook == "none") {
             withdrawedBook = bookTitle;
-            type = 's';
             output << user << "," << pass << "," << type << "," << withdrawedBook << endl;
             found = true;
         } else output << line << endl;
@@ -122,14 +137,14 @@ void withdrawBook(string username, string bookTitle) {
     input.close();
     output.close();
 
-    if (!found) remove("temp.csv");
+    if (!found) remove("src/app/model/temp.csv");
     else {
-        remove("users.csv");
-        rename("temp.csv", "users.csv");
+        remove("src/app/model/users.csv");
+        rename("src/app/model/temp.csv", "src/app/model/users.csv");
     }
 
-    ifstream input2("books.csv");
-    ofstream output2("temp.csv");
+    ifstream input2("src/app/model/books.csv");
+    ofstream output2("src/app/model/temp.csv");
     string line2;
     bool found2 = false;
 
@@ -152,18 +167,18 @@ void withdrawBook(string username, string bookTitle) {
     input2.close();
     output2.close();
 
-    if (!found2) remove("temp.csv");
+    if (!found2) remove("src/app/model/temp.csv");
     else {
-        remove("books.csv");
-        rename("temp.csv", "books.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }   
 }
 
 void returnBook(string username) {
     string bookUpdate;
 
-    ifstream input("users.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
     while (getline(input, line)) {
@@ -175,7 +190,7 @@ void returnBook(string username) {
         getline(ss, withdrawedBook, ',');
 
         if (user == username && withdrawedBook == "none") {
-            remove("temp.csv");
+            remove("src/app/model/temp.csv");
             return;
         } 
 
@@ -191,14 +206,14 @@ void returnBook(string username) {
     input.close();
     output.close();
 
-    if (!found) remove("temp.csv");
+    if (!found) remove("src/app/model/temp.csv");
     else {
-        remove("users.csv");
-        rename("temp.csv", "users.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 
-    ifstream input2("books.csv");
-    ofstream output2("temp.csv");
+    ifstream input2("src/app/model/books.csv");
+    ofstream output2("src/app/model/temp.csv");
     string line2;
     bool found2 = false;
     while (getline(input2, line2)) {
@@ -218,16 +233,16 @@ void returnBook(string username) {
     input2.close();
     output2.close();
 
-    if (!found2) remove("./bin/data/temp.csv");
+    if (!found2) remove("src/app/model/temp.csv");
     else {
-        remove("books.csv");
-        rename("temp.csv", "books.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 }
 
 void registerUser(string username, string password) {
-    ifstream input("users.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
     while (getline(input, line)) {
@@ -238,7 +253,7 @@ void registerUser(string username, string password) {
         getline(ss, type, ',');
         getline(ss, withdrawedBook, ',');
         if (user == username) {
-            remove("temp.csv");
+            remove("src/app/model/temp.csv");
             return;
         }
         output << line << endl;
@@ -247,15 +262,15 @@ void registerUser(string username, string password) {
     output << username << "," << password << "," << 'c' << "," << "none" << endl;
     input.close();
     output.close();
-    remove("users.csv");
-    rename("temp.csv", "users.csv");
+    remove("src/app/model/books.csv");
+    rename("src/app/model/temp.csv", "src/app/model/books.csv");
     
 }
 
 void addBook() {
     string title, author;
-    ifstream input("books.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     while (getline(input, line)) {
         output << line << endl;
@@ -263,13 +278,13 @@ void addBook() {
     output << title << "," << author << "," << "not_sold" << endl;
     input.close();
     output.close();
-    remove("books.csv");
-    rename("temp.csv", "books.csv");
+    remove("src/app/model/books.csv");
+    rename("src/app/model/temp.csv", "src/app/model/books.csv");
 }
 
 void deleteBook() {
-    ifstream input("books.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
     string title;
@@ -288,17 +303,17 @@ void deleteBook() {
     input.close();
     output.close();
 
-    if (!found) remove("temp.csv");
+    if (!found) remove("src/app/model/temp.csv");
     else {
-        remove("books.csv");
-        rename("\temp.csv", "books.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 
 }
 
 void editBook() {
-    ifstream input("books.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
     string title;
@@ -318,18 +333,18 @@ void editBook() {
     output.close();
     if (!found) {
         cout << "Libro no encontrado" << endl;
-        remove("temp.csv");
+        remove("src/app/model/temp.csv");
     } else {
-        remove("books.csv");
-        rename("temp.csv", ".books.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 }
 
 void registerEmpoyeeAdmin(char type) {
     string username, password;
     
-    ifstream input("users.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     while (getline(input, line)) {
         output << line << endl;
@@ -337,12 +352,12 @@ void registerEmpoyeeAdmin(char type) {
     output << username << "," << password << "," << type << "," << "none" << endl;
     input.close();
     output.close();
-    remove("users.csv");
-    rename("temp.csv", "users.csv");
+    remove("src/app/model/books.csv");
+    rename("src/app/model/temp.csv", "src/app/model/books.csv");
 }
 
 void showUsers(char type) {
-    ifstream input("users.csv");
+    ifstream input("src/app/model/users.csv");
     string line;
     while (getline(input, line)) {
         stringstream ss(line);
@@ -357,8 +372,8 @@ void showUsers(char type) {
 
 void deleteUser() {
     string username;
-    ifstream input("users.csv");
-    ofstream output("temp.csv");
+    ifstream input("src/app/model/books.csv");
+    ofstream output("src/app/model/temp.csv");
     string line;
     bool found = false;
     while (getline(input, line)) {
@@ -374,9 +389,9 @@ void deleteUser() {
     }
     input.close();
     output.close();
-    if (!found) remove("temp.csv");  
+    if (!found) remove("src/app/model/temp.csv");  
     else {        
-        remove("users.csv");
-        rename("temp.csv", "users.csv");
+        remove("src/app/model/books.csv");
+        rename("src/app/model/temp.csv", "src/app/model/books.csv");
     }
 }
